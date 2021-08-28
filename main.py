@@ -11,7 +11,7 @@ def args_parser():
     parser.add_argument('-perplexity', default=10)
     parser.add_argument('--data',default=torch.randn(500,10))
     parser.add_argument('--label_state',default='no')
-    parser.add_argument('--class_number',default='4')
+    parser.add_argument('--class_number',default=4)
     parser.add_argument('--label',default=np.random.randint(0,4,[500,1]))
     args = parser.parse_args()
     return args
