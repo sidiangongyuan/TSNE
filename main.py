@@ -9,6 +9,10 @@ import numpy as np
 def args_parser():
     parser = argparse.ArgumentParser(description='tsne instruction and visualization')
     parser.add_argument('-perplexity', default=10)
+    parser.add_argument('--data',default=torch.randn(500,10))
+    parser.add_argument('--label_state',default='no')
+    parser.add_argument('--class_number',default='4')
+    parser.add_argument('--label',default=np.random.randint(0,4,[500,1]))
     args = parser.parse_args()
     return args
 
@@ -53,19 +57,16 @@ def draw(x,label_state,label,classifcation):
     plt.show()
 
 
-def start():
+def start(args):
     # here is your data, tensor/array/list ...
-    all_fea = torch.randn(500,10)    # samples  and  dimensions
-    label_state = 'yes'
-    class_number = 10
-    label = np.random.randint(0,class_number,[500,1])
 
     # tsne
-    fea = tsne(all_fea)
+    fea = tsne(args.data)
 
     # draw
-    draw(fea,label_state,label,class_number)
+    draw(fea,args.label_state,args.label,args.class_number)
 
 
 if __name__ == '__main__':
-    start()
+    args = args_parser()
+    start(args)
